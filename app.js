@@ -90,18 +90,18 @@ function departmentView() {
   var query = "SELECT name FROM departments";
   connection.query(query, function (err, res) {
     for (var i = 0; i < res.length; i++) {
-      console.log(res[i].name);
+      console.table(res)
     }
   });
+  runSearch();
 }
 
 function managerView() {
   var query = "SELECT id, first_name, last_name FROM employees WHERE id IN (SELECT manager_id FROM employees WHERE manager_id IS NOT NULL)";
   connection.query(query, function (err, res) {
     for (var i = 0; i < res.length; i++) {
-      console.log(res[i].first_name + " " + res[i].last_name + " || Id: " + res[i].id);
+      console.table(res)
     }
-
     runSearch();
   });
 }
@@ -244,22 +244,3 @@ function employeeUpdate() {
     });
 }
 
-function employeeManager() {
-  inquirer
-    .prompt({
-      name: "employeeManager",
-      type: "input",
-      message: "What employee would you like to update the manager for?",
-      //choices: need to figure out if we want to pull this by employee and then prompt for manager name
-    })
-    .then(function (answer) {
-      var query = "SELECT manager_id FROM employees WHERE ?";
-      connection.query(query, function (err, res) {
-        for (var i = 0; i < res.length; i++) {
-          console.log(res[i].employee);
-        }
-
-        runSearch();
-      });
-    });
-}
