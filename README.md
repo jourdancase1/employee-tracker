@@ -12,5 +12,5 @@ npm install, then run node app.js and follow the prompts from inquirer
 MIT
      
 ### Questions? Contact me at: 
-jourdancase11@gmail.com
+jourdancase11@gmail.com</br>
 https://github.com/jourdancase1         
